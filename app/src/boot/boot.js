@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import App from 'src/app';
+import app from 'src/app';
 
 /**
  * Manually bootstrap the application when AngularJS and
@@ -10,11 +10,11 @@ angular
   .element( document )
   .ready( function() {
     angular
-      .module( 'starter-app-bootstrap', [ App.name ] )
+      .module( 'advokat-bootstrap', [ app.name ] )
       .run(()=>{
-        console.log(`Running the 'starter-app-bootstrap' ES6 Material-Start Tutorial`);
+        console.log(`Running the 'advokat-app-bootstrap' ES6 Material-Start Tutorial`);
       });
 
     let body = document.getElementsByTagName("body")[0];
-    angular.bootstrap( body, [ 'starter-app-bootstrap' ]);
+    angular.bootstrap( body, [ 'advokat-bootstrap' ]);
   });
