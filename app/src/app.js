@@ -4,7 +4,7 @@ import angular from 'angular';
 import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
-import 'angular-ui-router';
+import '@uirouter/angularjs';
 
 import AppController from 'src/AppController';
 import Users from 'src/users/Users';
