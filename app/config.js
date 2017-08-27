@@ -17,7 +17,6 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-messages": "github:angular/bower-angular-messages@1.6.6",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
-    "angular-ui-router": "npm:angular-ui-router@0.4.2",
     "css": "github:systemjs/plugin-css@0.1.35",
     "json": "github:systemjs/plugin-json@0.1.2",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -56,17 +55,13 @@ System.config({
     },
     "npm:@uirouter/angularjs@1.0.6": {
       "@uirouter/core": "npm:@uirouter/core@5.0.6",
-      "angular": "npm:angular@1.6.6",
+      "angular": "github:angular/bower-angular@1.6.6",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:@uirouter/core@5.0.6": {
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
-    },
-    "npm:angular-ui-router@0.4.2": {
-      "angular": "npm:angular@1.6.6",
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:assert@1.4.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
