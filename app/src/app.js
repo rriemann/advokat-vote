@@ -9,6 +9,7 @@ import '@uirouter/angularjs';
 import AppController from 'src/AppController';
 import Users from 'src/users/Users';
 import Votings from 'src/votings/Votings';
+import AuthService from 'src/Auth.service';
 
 export default angular.module( 'advokat', [ 'ui.router', 'ngMaterial', Users.name, Votings.name ] )
 .config(($mdIconProvider, $mdThemingProvider) => {
@@ -16,6 +17,7 @@ export default angular.module( 'advokat', [ 'ui.router', 'ngMaterial', Users.nam
     .primaryPalette('brown')
     .accentPalette('red');
 })
+.service('AuthService', AuthService)
 .controller('AppController', AppController)
 .config(($stateProvider, $urlRouterProvider, $locationProvider) => {
   $locationProvider.html5Mode(true);
