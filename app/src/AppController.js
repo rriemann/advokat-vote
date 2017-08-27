@@ -7,10 +7,11 @@
 function AppController(UsersDataService, $mdSidenav) {
   var self = this;
 
-  self.selected     = null;
-  self.users        = [ ];
-  self.selectUser   = selectUser;
-  self.toggleList   = toggleUsersList;
+  self.selectedVoting     = null;
+  self.votings        = [ ];
+  self.selectVoting   = selectVoting;
+  self.toggleList   = toggleVotingsList;
+  self.openAccountMenu = openAccountMenu;
 
   // Load all registered users
 
@@ -28,16 +29,20 @@ function AppController(UsersDataService, $mdSidenav) {
   /**
    * Hide or Show the 'left' sideNav area
    */
-  function toggleUsersList() {
+  function toggleVotingsList() {
     $mdSidenav('left').toggle();
+  }
+
+  function openAccountMenu($mdMenu, $event) {
+    $mdMenu.open($event);
   }
 
   /**
    * Select the current avatars
    * @param menuId
    */
-  function selectUser ( user ) {
-    self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+  function selectVoting( voting ) {
+    self.selected = angular.isNumber(voting) ? $scope.users[voting] : voting;
   }
 }
 

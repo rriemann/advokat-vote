@@ -8,19 +8,50 @@
 
   <title>Angular Material - Starter App</title>
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="./jspm_packages/github/angular/bower-material@master/angular-material.css"/>
   <link rel="stylesheet" href="./assets/app.css"/>
+  <base href="/">
 </head>
 
 <body ng-cloak layout="column" ng-controller="AppController as app">
 
   <!-- Container #1 (see wireframe) -->
-  <md-toolbar layout="row" class="md-toolbar-tools">
-    <md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleList()"
-               aria-label="Show User List">
+  <md-toolbar layout="row"class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Show Menu" hide-gt-sm ng-click="app.toggleList()">
       <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-    <h1>Angular Material - Starter App</h1>
+    <h2 flex md-truncate>Advokat Vote</h2>
+    <!-- <img ng-src="{{ctrl.face}}" alt="Account Avatar" class="md-avatar"> -->
+    <md-icon>account_box</md-icon>
+
+    <md-menu md-position-mode="target-right target">
+      <md-button aria-label="Account Aptions" class="md-icon-button" ng-click="app.openAccountMenu($mdMenu, $event)">
+        <md-icon md-menu-origin>more_vert</md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <!-- icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"" -->
+        <md-menu-item>
+          <md-button disabled="disabled" ng-click="ctrl.login($event)">
+            <md-icon md-menu-align-target>account_circle</md-icon>
+            Login
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="ctrl.logout($event)">
+            <md-icon>eject</md-icon>
+            Logout
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="ctrl.about($event)">
+            <md-icon>help</md-icon>
+            About
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
   </md-toolbar>
 
   <!-- Container #2 -->
@@ -29,20 +60,34 @@
     <!-- Container #3 -->
     <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')"
                 md-component-id="left" ng-click="app.toggleList()">
-      <!-- Custom UsersList component -->
-      <users-list
-          users="app.users"
-          selected="app.selected"
-          on-selected="app.selectUser(user)">
-      </users-list>
+      <section>
+        <md-subheader class="md-primary">Organising</md-subheader>
+        <md-list>
+          <md-list-item ng-click="ctrl.newVoting($event)">
+            <md-icon md-svg-icon="create"></md-icon>
+            <p>Create new Voting</p>
+          </md-list-item>
+        </md-list>
+      </section>
+      <md-divider></md-divider>
+      <section>
+        <md-subheader class="md-primary">Participating</md-subheader>
+        <!-- Custom VotingsList component -->
+        <votings-list
+            votings="app.votings"
+            selected="app.voting"
+            on-selected="app.selectVoting(voting)">
+        </votings-list>
+      </section>
     </md-sidenav>
 
     <!-- Container #4 -->
     <md-content flex id="content">
+      <div ui-view></div>
       <!-- Custom UserDetails component -->
-      <user-details
-          selected="app.selected" >
-      </user-details>
+      <voting-details
+          selected="app.selectedVoting" >
+      </voting-details>
     </md-content>
 
   </div>
