@@ -10,6 +10,7 @@ System.config({
   },
 
   map: {
+    "@uirouter/angularjs": "npm:@uirouter/angularjs@1.0.6",
     "angular": "github:angular/bower-angular@1.6.6",
     "angular-animate": "github:angular/bower-angular-animate@1.6.6",
     "angular-aria": "github:angular/bower-angular-aria@1.6.6",
@@ -52,6 +53,16 @@ System.config({
     },
     "github:jspm/nodelibs-vm@0.1.0": {
       "vm-browserify": "npm:vm-browserify@0.0.4"
+    },
+    "npm:@uirouter/angularjs@1.0.6": {
+      "@uirouter/core": "npm:@uirouter/core@5.0.6",
+      "angular": "npm:angular@1.6.6",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:@uirouter/core@5.0.6": {
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:angular-ui-router@0.4.2": {
       "angular": "npm:angular@1.6.6",
