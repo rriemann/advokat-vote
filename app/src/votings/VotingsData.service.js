@@ -1,7 +1,7 @@
 /**
  * This service store votings
  */
-export default class AuthService {
+export default class VotingsDataService {
   constructor($rootScope, $q, localStorageService) {
     this.$inject = ['$rootScope', '$q', 'localStorageService'];
     this.$rootScope = $rootScope;
@@ -21,6 +21,10 @@ export default class AuthService {
       _id: voting._id,
       description: voting,
     }
+    this.localStorageService.set("votings", this.votings);
+  }
+
+  save() {
     this.localStorageService.set("votings", this.votings);
   }
 

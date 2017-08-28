@@ -17,16 +17,16 @@
   </md-input-container>
 </div>
 <div flex layout-padding="layout-padding" class="md-whiteframe-2dp">
-  <form name="form" ng-submit="$ctrl.submit()" ng-hide="$ctrl.voting.input">
+  <form name="form" ng-submit="$ctrl.submit()" ng-disable="$ctrl.voting.input">
     <h2 class="md-title">Questionaire</h2>
     <div ng-repeat="question in $ctrl.voting.description.questions">
       <h4>{{question.title}}</h4>
-      <md-checkbox ng-repeat="answer in question.answers" ng-disabled="$ctrl.isDisabled(question, answer, question.votes)" ng-checked="ctrl.isChecked(question,answer)" ng-click="ctrl.toggleCheck(question,answer, question.votes)">{{answer.title}}</md-checkbox>
+      <md-checkbox ng-repeat="answer in question.answers" ng-disabled="$ctrl.voting.input || $ctrl.isDisabled(question, answer, question.votes)" ng-checked="$ctrl.isChecked(question,answer)" ng-click="$ctrl.toggleCheck(question,answer, question.votes)">{{answer.title}}</md-checkbox>
       <md-divider ng-if="!$last"></md-divider>
     </div>
-    <div layout="row" layout-align="space-between">
-      <input type="submit" value="Save" class="md-button"/>
-      <md-button ng-click="$ctrl.reset()">Reset</md-button>
+    <div layout-align="space-between">
+      <input ng-disabled="$ctrl.voting.input" type="submit" value="Submit" class="md-button md-primary md-raised"/>
+      <md-button class="md-warn" ng-disabled="$ctrl.voting.input" ng-click="$ctrl.reset()">Reset</md-button>
     </div>
   </form>
   <div ng-if="$ctrl.voting.aggregateContainer">
@@ -38,7 +38,7 @@
     <md-list>
       <div ng-repeat="question in $ctrl.voting.description.questions">
         <md-subheader class="md-no-sticky">{{question.title}}</md-subheader>
-        <md-list-item ng-repeat="answer in question.answers" layout-align="space-between"><span flex="grow">{{answer.title}}</span><span flex="flex">{{answer.count || 0}}            </span></md-list-item>
+        <md-list-item ng-repeat="answer in question.answers" layout-align="space-between"><span flex="grow">{{answer.title}}</span><span flex="flex">{{answer.count || 0}}</span></md-list-item>
       </div>
     </md-list>
     <div layout="row">

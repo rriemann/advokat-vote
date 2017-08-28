@@ -15,7 +15,7 @@ import AuthHook from 'src/Auth.hook';
 export default angular.module( 'advokat', [ 'ui.router', 'ngMaterial', Users.name, Votings.name ] )
 .config(($mdIconProvider, $mdThemingProvider) => {
   $mdThemingProvider.theme('default')
-    .primaryPalette('brown')
+    .primaryPalette('blue')
     .accentPalette('red');
 })
 .service('AuthService', AuthService)
