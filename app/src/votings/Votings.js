@@ -44,12 +44,11 @@ export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessage
   $stateProvider.state('show', {
     url: '/show/:votingId',
     component: ShowComponent.name,
-    // data: { requiresAuth: true },
+    // // data: { requiresAuth: true },
     resolve: {
       voting: function($transition$, VotingsDataService) {
-        debugger;
         return VotingsDataService.votings[$transition$.params().votingId];
       }
-    }
+    },
   });
 });

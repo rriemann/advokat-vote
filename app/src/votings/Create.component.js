@@ -22,7 +22,7 @@ class CreateController {
     // model for election form
     this.newModel = {
       start: new Date(),
-      sponsor: AuthService.user.email,
+      sponsor: "test", // AuthService.user.email,
       electorate: [],
       questions: [],
     };
