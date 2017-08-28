@@ -22,7 +22,7 @@ class CreateController {
     // model for election form
     this.newModel = {
       start: new Date(),
-      sponsor: "test", // AuthService.user.email,
+      sponsor: AuthService.user.email,
       electorate: [],
       questions: [],
     };
@@ -86,7 +86,7 @@ class CreateController {
     var newModel = angular.copy(this.newModel);
     console.log("newModel", newModel);
     this.VotingsDataService.addVoting(newModel);
-    this.$state.go('welcome');
+    this.$state.go('show',{votingId: newModel._id});
     // submit (with promise?)
     /* nope
       console.log "couldn't submit: ", err
