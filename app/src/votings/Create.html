@@ -1,0 +1,61 @@
+<div layout="row" layout-align="center" layout-padding="layout-padding">
+  <div layout="column" flex="60" flex-md="80" flex-sm="100" layout-padding="layout-padding" class="md-whiteframe-2dp">
+    <form name="electionForm" novalidate="novalidate" ng-submit="ctrl.submit()">
+      <h2 class="md-title">Election Setup</h2>
+      <md-input-container class="md-block">
+        <label>Title</label>
+        <input ng-model="ctrl.newModel.title" required="required" name="title"/>
+        <div ng-messages="electionForm.title.$error">
+          <div ng-message="required">This is required</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Sponsor/Author</label>
+        <input ng-model="ctrl.newModel.author" disabled="disabled"/>
+      </md-input-container>
+      <div class="md-block">
+        <h2 class="md-title">Election Participants</h2>
+        <md-chips ng-model="ctrl.newModel.electorate" md-separator-keys="ctrl.customSeparatorKeys" md-autocomplete-snap="md-autocomplete-snap">
+          <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.queryParticipants(ctrl.searchText)" md-item-text="item" placeholder="Enter Participants"><span md-highlight-text="ctrl.searchText">{{item}}</span></md-autocomplete>
+        </md-chips>
+      </div>
+      <div ng-repeat="question in ctrl.newModel.questions" flex="flex">
+        <ng-form name="questionForm" novalidate="novalidate">
+          <div layout="layout">
+            <h2 flex="flex" class="md-title">Question {{$index+1}}            </h2>
+            <md-button type="button" ng-click="ctrl.removeQuestion($index)" ng-hide="ctrl.isLastQuestion()" title="Remove Question" aria-label="Remove Question" class="md-warn">
+              <md-icon md-font-set="material-icons">clear</md-icon>
+            </md-button>
+          </div>
+          <md-input-container flex="flex" class="md-block">
+            <label>Question Title</label>
+            <input ng-model="question.title" name="title" required="required"/>
+            <div ng-messages="questionForm.title.$error">
+              <div ng-message="required">This is required</div>
+            </div>
+          </md-input-container>
+          <div layout="layout">
+            <md-chips flex="flex" ng-model="question.answers" md-separator-keys="ctrl.customSeparatorKeys" md-transform-chip="ctrl.transformChipTitle($chip)" secondary-placeholder="Enter Answers" placeholder="Enter answers">
+              <md-chip-template><span>{{ $chip.title }}</span></md-chip-template>
+            </md-chips>
+            <md-input-container class="md-block">
+              <label>Votes</label>
+              <input type="number" min="0" step="1" max="{{question.answers.length}}" ng-model="question.votes"/>
+            </md-input-container>
+          </div>
+        </ng-form>
+      </div>
+      <div layout="layout" layout-align="space-between start">
+        <p flex="flex">Enter at least two answers. Confirm every answer with [enter].<br/>Define votes per question per voter.</p>
+        <md-button ng-click="ctrl.addQuestion()" class="md-raised">
+          <md-icon md-font-set="material-icons">add</md-icon>Add Question
+        </md-button>
+      </div>
+      <div layout="layout" layout-align="start">
+        <md-button type="submit" ng-disabled="electionForm.$invalid || ctrl.isSaving" class="md-primary md-raised">
+          <md-icon md-font-set="material-icons">done</md-icon>Submit
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

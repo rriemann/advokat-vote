@@ -6,6 +6,7 @@ import hello from 'hellojs';
 export default class AuthService {
   constructor($rootScope) {
     this.$inject = ['$rootScope'];
+    this.$rootScope = $rootScope;
     this.user = null;
 
     hello.init({
@@ -44,7 +45,7 @@ export default class AuthService {
     var session = hello('google').getAuthResponse();
     console.log('session:', session);
     console.log('isLoggedIn', session && session.access_token && session.expires > currentTime);
-    return !!session && session.access_toke && session.expires > currentTime;
+    return !!(session && session.access_toke && session.expires > currentTime);
   }
 
   /**
@@ -63,7 +64,7 @@ export default class AuthService {
 
   /** Logs the current user out */
   logout() {
-    hello('facebook').logout().then(() => {
+    hello('google').logout().then(() => {
   	   console.log('signed out');
        this.user = null;
     }, function(e) {

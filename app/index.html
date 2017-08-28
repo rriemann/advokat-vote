@@ -21,7 +21,7 @@
     <md-button class="md-icon-button" aria-label="Show Menu" hide-gt-sm ng-click="app.toggleList()">
       <md-icon>menu</md-icon>
     </md-button>
-    <h2 flex md-truncate>Advokat Vote</h2>
+    <h2 flex md-truncate><a ui-sref="welcome">Advokat Vote</a></h2>
     <img ng-show="app.AuthService.user && app.AuthService.user.thumbnail" ng-src="{{app.AuthService.user.thumbnail}}" alt="Account Avatar" class="md-avatar">
 
     <md-menu md-position-mode="target-right target">
@@ -37,7 +37,7 @@
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="ctrl.logout($event)">
+          <md-button ng-click="app.AuthService.logout($event)">
             <md-icon>eject</md-icon>
             Logout
           </md-button>
@@ -62,7 +62,7 @@
       <section>
         <md-subheader class="md-primary">Organising</md-subheader>
         <md-list>
-          <md-list-item ng-click="ctrl.newVoting($event)">
+          <md-list-item ui-sref="create">
             <md-icon>create</md-icon>
             <p>Create new Voting</p>
           </md-list-item>
