@@ -7,9 +7,9 @@ export default {
     // controller: EditContactController,
 
     templateUrl: 'src/votings/Welcome.html',
+    controller: function($stateParams) {
+      this.message = $stateParams.message;
+    },
+    controllerAs: 'ctrl',
   },
-  controller: function($stateParams) {
-    this.message = $stateParams.message;
-  },
-  controllerAs: 'ctrl',
 };

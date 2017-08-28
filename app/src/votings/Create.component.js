@@ -1,6 +1,11 @@
+import * as utils from 'src/lib/utils';
+
 class CreateController {
-  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog) {
-    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog'];
+  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q) {
+    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q'];
+    this.$q = $q;
+    this.$state = $state;
+    this.$mdDialog = $mdDialog;
 
     this.customSeparatorKeys = [
       $mdConstant.KEY_CODE.ENTER,
@@ -18,7 +23,7 @@ class CreateController {
       questions: [],
     };
 
-    addQuestion();
+    this.addQuestion();
   }
 
   addQuestion() {
@@ -26,7 +31,6 @@ class CreateController {
       answers: [],
       votes: 1,
     });
-    console.log(2+4);
   }
 
   transformChipTitle(chip) {
@@ -51,30 +55,35 @@ class CreateController {
     model.questions.forEach((question) => {
       question.answers.forEach((answer) => {
         delete answer._id;
-        answer._id = helpers.hash(answer)
+        answer._id = utils.hash(answer);
       });
       delete question._id;
-      question._id = helpers.hash(question);
+      question._id = utils.hash(question);
     });
     delete model._id;
-    model._id = helpers.hash(model);
+    model._id = utils.hash(model);
     return model;
   }
-  /*
-  @queryParticipants = (searchText) ->
-    @queryPromise ||= $meteor.call 'notifierQueryParticipants', searchText
-    .then (data) =>
-      @queryPromise = undefined
-      data
 
-  @submit = ->
-    @isSaving = true
-    console.log "submitting", @newModel
-    @newModel = @hash(@newModel)
-    $meteor.call 'notifierCreate', @newModel._id, angular.copy(@newModel)
-    .then ->
-      $state.go 'index'
-    , (err) =>
+  queryParticipants(searchText) {
+    var emails = ['robert@riemann.cc', 'stephane.grumbach@inria.fr'];
+    return this.$q(function(resolve, reject) {
+      var results = emails.filter(function(email) {
+          return email.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+      });
+      resolve(emails);
+    });
+  }
+
+  submit() {
+    this.isSaving = true;
+    console.log("submitting", this.newModel);
+    this.newModel = this.hash(this.newModel);
+    var newModel = angular.copy(this.newModel);
+    console.log("newModel", newModel);
+    this.$state.go('welcome');
+    // submit (with promise?)
+    /* nope
       console.log "couldn't submit: ", err
       $mdDialog.show(
         $mdDialog.alert()
@@ -85,11 +94,10 @@ class CreateController {
         .ariaLabel('Error Dialog')
         .ok('Close')
         # .targetEvent(ev)
-      ).then =>
-        @isSaving = false
-
-  return
-  */
+    */
+    // then:
+    this.isSaving = false;
+  }
 
 }
 
@@ -97,10 +105,7 @@ export default {
   name: 'createPage',
   config: {
     // bindings: { pristineContact: '<' },
-
     controller: CreateController,
-    conrollerAs: 'ctrl',
-
     templateUrl: 'src/votings/Create.html',
   },
 };

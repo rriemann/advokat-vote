@@ -17,6 +17,7 @@ System.config({
     "angular-material": "github:angular/bower-material@master",
     "angular-messages": "github:angular/bower-angular-messages@1.6.6",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
+    "crypto-js": "npm:crypto-js@3.1.9-1",
     "css": "github:systemjs/plugin-css@0.1.35",
     "hellojs": "npm:hellojs@1.15.1",
     "json": "github:systemjs/plugin-json@0.1.2",
@@ -93,6 +94,10 @@ System.config({
     },
     "npm:core-util-is@1.0.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1"
+    },
+    "npm:crypto-js@3.1.9-1": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.1",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:hellojs@1.15.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",

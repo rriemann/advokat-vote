@@ -15,7 +15,7 @@ export default class AuthService {
       // google:  'AIzaSyAPgAkZ7_xKEiM4kEErtN6zWVt-XKL30uI'
       google: '785009904705-65k7sf0dk54uetqs90p7gvn59on8288u.apps.googleusercontent.com',
     }, {
-      redirect_uri: 'statics/redirect.html',
+      redirect_uri: '/redirect.html',
       scope: 'email',
       force: true // not clear what it does (insist on scope?)
     });
