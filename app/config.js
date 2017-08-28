@@ -19,6 +19,7 @@ System.config({
     "angular-material-time-picker": "npm:angular-material-time-picker@1.0.7",
     "angular-messages": "github:angular/bower-angular-messages@1.6.6",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
+    "angular-moment": "npm:angular-moment@1.0.1",
     "crypto-js": "npm:crypto-js@3.1.9-1",
     "css": "github:systemjs/plugin-css@0.1.35",
     "hellojs": "npm:hellojs@1.15.1",
@@ -94,6 +95,9 @@ System.config({
       "angular-aria": "github:angular/bower-angular-aria@1.6.6",
       "angular-messages": "github:angular/bower-angular-messages@1.6.6",
       "css": "github:systemjs/plugin-css@0.1.35"
+    },
+    "npm:angular-moment@1.0.1": {
+      "moment": "npm:moment@2.18.1"
     },
     "npm:assert@1.4.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

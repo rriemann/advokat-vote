@@ -6,12 +6,12 @@ import ShowComponent from './Show.component';
 import VotingsDataService from './VotingsData.service';
 
 import ngTimePicker from 'angular-material-time-picker';
-
 import LocalStorageModule from 'angular-local-storage';
+import angularMoment from 'angular-moment';
 // import ngMessages from 'angular-messages';
 import 'angular-messages';
 
-export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessages', LocalStorageModule])
+export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessages', LocalStorageModule, angularMoment])
 .component(WelcomeComponent.name, WelcomeComponent.config)
 .service("VotingsDataService", VotingsDataService)
 .config((localStorageServiceProvider) => {
