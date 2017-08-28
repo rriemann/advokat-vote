@@ -24,16 +24,29 @@
       <md-checkbox ng-repeat="answer in question.answers" ng-disabled="$ctrl.voting.input || $ctrl.isDisabled(question, answer, question.votes)" ng-checked="$ctrl.isChecked(question,answer)" ng-click="$ctrl.toggleCheck(question,answer, question.votes)">{{answer.title}}</md-checkbox>
       <md-divider ng-if="!$last"></md-divider>
     </div>
-    <div layout-align="space-between">
+    <div layout-align="space-between" ng-hide="$ctrl.voting.input">
       <input ng-disabled="$ctrl.voting.input" type="submit" value="Submit" class="md-button md-primary md-raised"/>
       <md-button class="md-warn" ng-disabled="$ctrl.voting.input" ng-click="$ctrl.reset()">Reset</md-button>
     </div>
   </form>
-  <div ng-if="$ctrl.voting.aggregateContainer">
+  <div ng-if="$ctrl.voting.input">
     <p>You have entered your vote.<br/>Please keep this window open to ensure votes can be aggregated.</p>
     <md-progress-linear md-mode="determinate" value="{{$ctrl.voting.aggregator.progress*100}}"></md-progress-linear>
   </div>
-  <div ng-show="$ctrl.voting.result">
+</div>
+<div flex layout-padding="layout-padding" class="md-whiteframe-2dp" ng-if="$ctrl.logs.length > 0">
+  <md-list class="todo">
+    <md-subheader ng-repeat-start="log in $ctrl.logs" class="md-no-sticky">{{log.title}}</md-subheader>
+    <div ng-repeat-end>
+      <md-list-item ng-repeat="entry in log.entries">
+        <md-icon>done</md-icon>
+        <p>{{entry}}</p>
+      </md-list-item>
+    </div>
+  </md-list>
+</div>
+<div flex layout-padding="layout-padding" class="md-whiteframe-2dp"  ng-show="$ctrl.voting.result">
+  <div>
     <h2 class="md-title">Result</h2>
     <md-list>
       <div ng-repeat="question in $ctrl.voting.description.questions">

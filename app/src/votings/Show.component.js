@@ -5,6 +5,8 @@ class ShowController {
     this.$inject = ['VotingsDataService'];
     this.input = {};
     this.save = VotingsDataService.save;
+
+    this.logs = [];
   }
 
   isChecked(question, answer) {
@@ -36,6 +38,17 @@ class ShowController {
     // console.log("valid?", this.form.$valid);
     this.voting.input = this.input;
     console.log(this.input);
+    this.register();
+  }
+
+  register() {
+    var registerLog = []
+    this.logs.push({
+        title: "Registration",
+        entries: registerLog
+    });
+    registerLog.push("Ballot prepared. Require now authorisation.");
+    
   }
 
   reset() {

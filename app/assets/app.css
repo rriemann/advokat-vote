@@ -120,3 +120,7 @@ span.name {
 #content .md-whiteframe-2dp {
   margin-bottom: 10px;
 }
+
+md-icon.todo, md-list.todo md-icon {
+  color: green;
+}
