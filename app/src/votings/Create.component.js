@@ -2,6 +2,8 @@ import angular from 'angular';
 
 import * as utils from 'src/lib/utils';
 
+const API_ENDPOINT = 'http://localhost:8081';
+
 class CreateController {
   constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q, $mdpTimePicker, VotingsDataService) {
     this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q', '$mdpTimePicker', 'VotingsDataService'];
@@ -17,8 +19,11 @@ class CreateController {
 
     this.today = new Date();
     this.today.setHours(0,0,0,0); // otherwise datepicker doesn't accept today
-    this.isSaving = false;
 
+    this.reset();
+  }
+
+  reset() {
     // model for election form
     this.newModel = {
       start: new Date(),
@@ -80,11 +85,10 @@ class CreateController {
   }
 
   submit() {
-    this.isSaving = true;
-    console.log("submitting", this.newModel);
     this.newModel = this.hash(this.newModel);
     var newModel = angular.copy(this.newModel);
-    console.log("newModel", newModel);
+    this.reset();
+    console.log("submit", newModel);
     this.VotingsDataService.addVoting(newModel);
     this.$state.go('show',{votingId: newModel._id});
     // submit (with promise?)
@@ -101,7 +105,6 @@ class CreateController {
         # .targetEvent(ev)
     */
     // then:
-    this.isSaving = false;
   }
 
 }

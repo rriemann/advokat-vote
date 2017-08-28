@@ -1,10 +1,11 @@
 import angular from 'angular';
 
 class ShowController {
-  constructor(VotingsDataService) {
-    this.$inject = ['VotingsDataService'];
+  constructor(VotingsDataService, $http) {
+    this.$inject = ['VotingsDataService', '$http'];
     this.input = {};
     this.save = VotingsDataService.save;
+    this.$http = $http;
 
     this.logs = [];
   }
@@ -48,7 +49,6 @@ class ShowController {
         entries: registerLog
     });
     registerLog.push("Ballot prepared. Require now authorisation.");
-    
   }
 
   reset() {
