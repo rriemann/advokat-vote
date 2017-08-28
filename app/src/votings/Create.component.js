@@ -2,8 +2,6 @@ import angular from 'angular';
 
 import * as utils from 'src/lib/utils';
 
-const API_ENDPOINT = 'http://localhost:8081';
-
 class CreateController {
   constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q, $mdpTimePicker, VotingsDataService) {
     this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q', '$mdpTimePicker', 'VotingsDataService'];

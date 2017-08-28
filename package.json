@@ -22,10 +22,14 @@
       "angular-moment": "npm:angular-moment@^1.0.1",
       "crypto-js": "npm:crypto-js@^3.1.9-1",
       "css": "github:systemjs/plugin-css@^0.1.20",
+      "events": "npm:events@^1.1.1",
       "hellojs": "npm:hellojs@^1.15.1",
       "json": "github:systemjs/plugin-json@^0.1.0",
+      "kad": "npm:kad@1.6.4",
       "plugin-traceur": "npm:systemjs-plugin-traceur@^0.0.3",
-      "text": "github:systemjs/plugin-text@^0.0.4"
+      "rriemann/kad": "github:rriemann/kad@engine_fix",
+      "text": "github:systemjs/plugin-text@^0.0.4",
+      "util": "npm:util@^0.10.3"
     },
     "devDependencies": {
       "plugin-traceur-runtime": "npm:babel-runtime@^5.8.24",

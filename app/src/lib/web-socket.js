@@ -1,8 +1,10 @@
 'use strict';
 
-var EventEmitter = require('events').EventEmitter;
+import {API_WEBSOCKET} from 'src/app.config';
+
+import {EventEmitter} from 'events';
 var emitter = new EventEmitter();
-var socket = new WebSocket('ws://localhost:8080');
+var socket = new WebSocket(API_WEBSOCKET);
 
 /**
 * Handle socket errors
@@ -42,4 +44,4 @@ emitter.send = function(message) {
   socket.send(message);
 };
 
-module.exports = emitter;
+export default emitter;

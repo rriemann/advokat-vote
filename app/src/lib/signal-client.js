@@ -4,9 +4,9 @@
 
 'use strict';
 
-var EventEmitter = require('events').EventEmitter;
-var webSocket = require('./web-socket');
-var inherits = require('util').inherits;
+import {EventEmitter} from 'events';
+import webSocket from './web-socket';
+import {inherits} from 'util';
 
 inherits(SignalClient, EventEmitter);
 
@@ -15,7 +15,7 @@ inherits(SignalClient, EventEmitter);
 * @param {string} nick
 * @constructor
 */
-function SignalClient(nick) {
+export default function SignalClient(nick) {
   var signalClient = this;
 
   webSocket.on('open', function() {
@@ -38,5 +38,3 @@ function SignalClient(nick) {
 SignalClient.prototype.emit = function(recipient, message) {
   webSocket.send(JSON.stringify({ recipient: recipient, message: message }));
 };
-
-module.exports = SignalClient;
