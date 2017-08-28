@@ -3,7 +3,7 @@ import angular from 'angular';
 import {API_ENDPOINT} from 'src/app.config';
 
 import SignalClient from 'src/lib/signal-client';
-import {kademliaNode, kademliaStorage} from 'kad';
+import {Node, storage} from 'kad';
 import WebRTC from 'src/lib/transport/index';
 
 class ShowController {
@@ -63,55 +63,56 @@ class ShowController {
   }
 
   createNode(nick) {
-    this.$q((resolve,reject) => {
-      if(this.signaller) {
-        return reject("already signaller");
-      }
+    // assume that websocket is already conected
+    if(this.signaller) {
+      return reject("already signaller");
+    }
 
-      this.signaller = new SignalClient(nick);
-      console.log('createNode with id', nick);
+    this.signaller = new SignalClient(nick);
+    console.log('createNode with id', nick);
 
-/* this websocket is booted with the app
-
-      webSocket.on('open', resolve); // better use once
-    }).then(() => {
-*/
-      this.node = new kademliaNode({
-        transport: new WebRTC(new WebRTC.Contact({
-          nick: nick
-        }), { signaller: this.signaller }),
-        storage: new kademliaStorage.LocalStorage(nick)
-      });
-
-      this.node.on('connect', resolve); // what if never occurs?
-    }).then(() => {
-      console.log("Connection established");
-
-      let data = {
-        _id: nick,
-        // some other connecting information may required by other protocols, e.g. port
-      };
-      return this.$http.put(API_ENDPOINT+`/api/tracker/${this.voting._id}/random`, data,
-      {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
-
-    }).then((data) => {
-      console.log("data", data);
-      debugger;
-      // connect to other peer if guest and not host
-      if($scope.peer != $scope.id) {
-        $scope.node.connect({ nick: $scope.peer }, function(err) {
-          if(err) {
-            alert(err);
-            return;
-          }
-          $log.info("Connected!");
-          $scope.setupAggregationStart();
-        });
-      } else {
-        $log.info("ommit connect");
-        $scope.setupAggregationStart();
-      }
+    this.node = new Node({
+      transport: new WebRTC(new WebRTC.Contact({
+        nick: nick
+      }), { signaller: this.signaller }),
+      storage: new storage.LocalStorage(nick)
     });
+
+
+    let data = {
+      _id: nick,
+      // some other connecting information may required by other protocols, e.g. port
+    };
+    this.$http.put(API_ENDPOINT+`/api/tracker/${this.voting._id}/random`, data,
+    {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }}).then((data) => {
+          console.log("tracker", data);
+          return !data.data ? false : JSON.parse(data.data);
+    }).then((contact) => {
+      this.$q((resolve,reject) => {
+        if(!contact) {
+          console.info("ommit connect");
+          return resolve();
+        }
+        this.node.connect({ nick: contact._id }, function(err) {
+          if(err) {
+            console.error(err);
+            return reject();
+          }
+          console.info("Connected!");
+          resolve();
+        });
+      }).then(() => {
+        var timeout = (this.voting.description.start.getTime() - (new Date()).getTime());
+        if (timeout < 0) timeout = 0;
+        this.$timeout(() => {
+          this.startAggregation();
+        }, timeout);
+      });
+    });
+  }
+
+  startAggregation() {
+    return 4;
   }
 
   startVote() {
