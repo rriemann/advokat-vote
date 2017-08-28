@@ -1,6 +1,46 @@
 <div layout="row" layout-align="center" layout-padding="layout-padding">
   <div layout="column" flex="60" flex-md="80" flex-sm="100" layout-padding="layout-padding" class="md-whiteframe-2dp">
-    hey
+    <h2 class="md-title">Voting</h2>
+    <md-input-container>
+      <label>Title</label>
+      <input readonly value="{{$ctrl.voting.description.title}}" placeholder="Title"/>
+    </md-input-container>
+    <md-input-container>
+      <label>Sponsor</label>
+      <input readonly value="{{$ctrl.voting.description.sponsor}}" placeholder="Sponsor"/>
+    </md-input-container>
+    <md-input-container>
+      <label>Deadline</label>
+      <input readonly value="{{$ctrl.voting.description.start | date: 'medium'}}" placeholder="Deadline"/>
+    </md-input-container>
+    <form name="form" ng-submit="ctrl.submit()" ng-show="$ctrl.voting.aquireInput &amp;&amp; ctrl.isWebRTCSupported">
+      <h2 class="md-title">Questionaire</h2>
+      <div ng-repeat="question in $ctrl.voting.description.questions">
+        <h4>{{question.title}}</h4>
+        <md-checkbox ng-repeat="answer in question.answers" ng-disabled="ctrl.isDisabled(question, answer, question.votes)" ng-checked="ctrl.isChecked(question,answer)" ng-click="ctrl.toggleCheck(question,answer, question.votes)">{{answer.title}}</md-checkbox>
+        <md-divider ng-if="!$last"></md-divider>
+      </div>
+      <div layout="row" layout-align="space-between">
+        <input type="submit" value="Save" class="md-button"/>
+        <md-button ng-click="ctrl.reset()">Reset</md-button>
+      </div>
+    </form>
+    <div ng-if="$ctrl.voting.aggregateContainer">
+      <p>You have entered your vote.<br/>Please keep this window open to ensure votes can be aggregated.</p>
+      <md-progress-linear md-mode="determinate" value="{{$ctrl.voting.aggregator.progress*100}}"></md-progress-linear>
+    </div>
+    <div ng-show="$ctrl.voting.result">
+      <h2 class="md-title">Result      </h2>
+      <md-list>
+        <div ng-repeat="question in $ctrl.voting.description.questions">
+          <md-subheader class="md-no-sticky">{{question.title}}</md-subheader>
+          <md-list-item ng-repeat="answer in question.answers" layout-align="space-between"><span flex="grow">{{answer.title}}</span><span flex="flex">{{answer.count || 0}}            </span></md-list-item>
+        </div>
+      </md-list>
+      <div layout="row">
+        <md-button ng-click="ctrl.stop()" ng-show="ctrl.showStopButton" class="md-raised md-primary">Stop Aggregation</md-button>
+      </div>
+    </div>
   </div>
 </div>
 

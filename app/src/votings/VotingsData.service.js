@@ -17,7 +17,10 @@ export default class AuthService {
       return;
     }
 
-    this.votings[voting._id] = voting;
+    this.votings[voting._id] = {
+      _id: voting._id,
+      description: voting,
+    }
     this.localStorageService.set("votings", this.votings);
   }
 

@@ -76,7 +76,7 @@
         <md-list>
           <md-list-item ng-repeat="voting in app.votings" ui-sref="show({votingId:voting._id})">
             <md-icon>description</md-icon>
-            <p>{{voting.title}}</p>
+            <p>{{voting.description.title}}</p>
           </md-list-item>
         </md-list>
       </section>
