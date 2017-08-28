@@ -116,3 +116,7 @@ span.name {
   bottom: 7px;
   opacity: 1;
 }
+
+#content .md-whiteframe-2dp {
+  margin-bottom: 10px;
+}

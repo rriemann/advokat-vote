@@ -15,6 +15,8 @@
     <!-- <time title="{{ $ctrl.voting.description.start  | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ $ctrl.voting.description.start | amCalendar }}</time> -->
     <!-- <div class="hint">{{ $ctrl.voting.description.start  | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}</div> -->
   </md-input-container>
+</div>
+<div flex layout-padding="layout-padding" class="md-whiteframe-2dp">
   <form name="form" ng-submit="$ctrl.submit()" ng-hide="$ctrl.voting.input">
     <h2 class="md-title">Questionaire</h2>
     <div ng-repeat="question in $ctrl.voting.description.questions">
