@@ -20,13 +20,16 @@ System.config({
     "angular-messages": "github:angular/bower-angular-messages@1.6.6",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
     "angular-moment": "npm:angular-moment@1.0.1",
+    "assert": "npm:assert@1.4.1",
     "crypto-js": "npm:crypto-js@3.1.9-1",
     "css": "github:systemjs/plugin-css@0.1.35",
     "events": "npm:events@1.1.1",
+    "hat": "npm:hat@0.0.3",
     "hellojs": "npm:hellojs@1.15.1",
     "json": "github:systemjs/plugin-json@0.1.2",
     "kad": "npm:kad@1.6.4",
     "rriemann/kad": "github:rriemann/kad@engine_fix",
+    "simple-peer": "npm:simple-peer@8.1.1",
     "text": "github:systemjs/plugin-text@0.0.4",
     "traceur": "github:jmcriffey/bower-traceur@0.0.93",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93",
@@ -260,6 +263,9 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:debug@2.6.8": {
+      "ms": "npm:ms@2.0.0"
+    },
     "npm:des.js@1.0.0": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",
       "inherits": "npm:inherits@2.0.3",
@@ -455,6 +461,15 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "inherits": "npm:inherits@2.0.3",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:simple-peer@8.1.1": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.1",
+      "debug": "npm:debug@2.6.8",
+      "get-browser-rtc": "npm:get-browser-rtc@1.0.2",
+      "inherits": "npm:inherits@2.0.3",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "randombytes": "npm:randombytes@2.0.5",
+      "readable-stream": "npm:readable-stream@2.3.3"
     },
     "npm:stream-browserify@1.0.0": {
       "events": "github:jspm/nodelibs-events@0.1.1",

@@ -2,25 +2,26 @@ import angular from 'angular';
 
 import {API_ENDPOINT} from 'src/app.config';
 
-import webSocket from 'src/lib/web-socket';
 import SignalClient from 'src/lib/signal-client';
 import {kademliaNode, kademliaStorage} from 'kad';
+import WebRTC from 'src/lib/transport/index';
 
 class ShowController {
   constructor(VotingsDataService, $http, $timeout, $q, AuthService) {
     this.$inject = ['VotingsDataService', '$http', '$timeout', '$q', 'AuthService'];
     this.input = {};
-    this.save = VotingsDataService.save;
+    this.VotingsDataService = VotingsDataService;
     this.$http = $http;
     this.$timeout = $timeout;
     this.$q = $q;
+    this.AuthService = AuthService;
 
     this.logs = [];
   }
 
   $onInit() {
     if(this.voting.input) {
-      $timeout(() => this.startVote());
+      this.$timeout(() => this.startVote());
     }
   }
 
@@ -53,8 +54,8 @@ class ShowController {
     // console.log("valid?", this.form.$valid);
     this.voting.input = this.input;
     console.log(this.input);
-    this.save();
-    $timeout(() => this.startVote());
+    this.VotingsDataService.save();
+    this.$timeout(() => this.startVote());
   }
 
   reset() {
@@ -62,7 +63,7 @@ class ShowController {
   }
 
   createNode(nick) {
-    $q((resolve,reject) => {
+    this.$q((resolve,reject) => {
       if(this.signaller) {
         return reject("already signaller");
       }
@@ -70,8 +71,11 @@ class ShowController {
       this.signaller = new SignalClient(nick);
       console.log('createNode with id', nick);
 
+/* this websocket is booted with the app
+
       webSocket.on('open', resolve); // better use once
     }).then(() => {
+*/
       this.node = new kademliaNode({
         transport: new WebRTC(new WebRTC.Contact({
           nick: nick
