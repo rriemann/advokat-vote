@@ -3,8 +3,8 @@ import angular from 'angular';
 import * as utils from 'src/lib/utils';
 
 class CreateController {
-  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q) {
-    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q'];
+  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q, $mdpTimePicker) {
+    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q', '$mdpTimePicker'];
     this.$q = $q;
     this.$state = $state;
     this.$mdDialog = $mdDialog;
@@ -20,6 +20,7 @@ class CreateController {
 
     // model for election form
     this.newModel = {
+      start: new Date(),
       sponsor: AuthService.user.email,
       electorate: [],
       questions: [],

@@ -13,6 +13,11 @@
         <label>Sponsor</label>
         <input ng-model="$ctrl.newModel.sponsor" disabled="disabled"/>
       </md-input-container>
+      <h2 class="md-title">Deadline</h2>
+      <div>
+        <md-datepicker ng-model="$ctrl.newModel.start" md-placeholder="Enter date"></md-datepicker>
+        <md-time-picker ng-model="$ctrl.newModel.start"></md-time-picker>
+      </div>
       <div class="md-block">
         <h2 class="md-title">Election Participants</h2>
         <md-chips ng-model="$ctrl.newModel.electorate" md-separator-keys="$ctrl.customSeparatorKeys" md-autocomplete-snap="md-autocomplete-snap">

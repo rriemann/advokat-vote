@@ -3,7 +3,11 @@
 import WelcomeComponent from './Welcome.component';
 import CreateComponent from './Create.component';
 
-export default angular.module("votings", ['ngMaterial'])
+import ngTimePicker from 'angular-material-time-picker';
+// import ngMessages from 'angular-messages';
+import 'angular-messages';
+
+export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessages'])
 .component(WelcomeComponent.name, WelcomeComponent.config)
 .config(($stateProvider) => {
   $stateProvider.state('welcome', {

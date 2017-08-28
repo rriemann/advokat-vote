@@ -15,6 +15,7 @@ System.config({
     "angular-animate": "github:angular/bower-angular-animate@1.6.6",
     "angular-aria": "github:angular/bower-angular-aria@1.6.6",
     "angular-material": "github:angular/bower-material@master",
+    "angular-material-time-picker": "npm:angular-material-time-picker@1.0.7",
     "angular-messages": "github:angular/bower-angular-messages@1.6.6",
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
     "crypto-js": "npm:crypto-js@3.1.9-1",
@@ -81,6 +82,17 @@ System.config({
     "npm:@uirouter/core@5.0.6": {
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:angular-material-time-picker@1.0.7": {
+      "angular": "npm:angular@1.6.6",
+      "angular-material": "npm:angular-material@1.1.4"
+    },
+    "npm:angular-material@1.1.4": {
+      "angular": "github:angular/bower-angular@1.6.6",
+      "angular-animate": "github:angular/bower-angular-animate@1.6.6",
+      "angular-aria": "github:angular/bower-angular-aria@1.6.6",
+      "angular-messages": "github:angular/bower-angular-messages@1.6.6",
+      "css": "github:systemjs/plugin-css@0.1.35"
     },
     "npm:assert@1.4.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
