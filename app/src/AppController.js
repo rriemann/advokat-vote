@@ -4,7 +4,7 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, $mdSidenav) {
+function AppController(UsersDataService, AuthService, $mdSidenav) {
   var self = this;
 
   self.selectedVoting     = null;
@@ -12,6 +12,7 @@ function AppController(UsersDataService, $mdSidenav) {
   self.selectVoting   = selectVoting;
   self.toggleList   = toggleVotingsList;
   self.openAccountMenu = openAccountMenu;
+  self.AuthService = AuthService;
 
   // Load all registered users
 
@@ -46,4 +47,4 @@ function AppController(UsersDataService, $mdSidenav) {
   }
 }
 
-export default [ 'UsersDataService', '$mdSidenav', AppController ];
+export default [ 'UsersDataService', 'AuthService', '$mdSidenav', AppController ];

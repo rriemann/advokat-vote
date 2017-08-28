@@ -3,11 +3,10 @@ import hello from 'hellojs';
 /**
  * This service emulates an Authentication Service.
  */
-export class AuthService {
-  constructor($q) {
-    this.AppConfig = AppConfig;
-    this.$q = $q;
-    this.$timeout = $timeout;
+export default class AuthService {
+  constructor($rootScope) {
+    this.$inject = ['$rootScope'];
+    this.user = null;
 
     hello.init({
       // facebook: FACEBOOK_CLIENT_ID,
@@ -22,7 +21,18 @@ export class AuthService {
 
     hello.on('auth.login', (auth) => {
       console.log('auth', auth);
-      this.access_token = auth.authResponse.access_token;
+      this.user = {
+        access_token: auth.authResponse.access_token
+      };
+
+      hello('google').api('me').then((data) => {
+        $rootScope.$apply(() => {
+          this.user.email = data.email;
+          this.user.thumbnail = data.thumbnail;
+        });
+      }), function(e) {
+    	   alert('api me error: ' + e.error.message);
+      };
     });
   }
 
@@ -46,8 +56,6 @@ export class AuthService {
    * Delays 800ms to simulate an async REST API delay.
    */
   login() {
-    let {$q} = this;
-
     return hello('google').login().then((data) => {
       console.log("in login chain", data);
     });
@@ -55,11 +63,11 @@ export class AuthService {
 
   /** Logs the current user out */
   logout() {
-    hello('facebook').logout().then(function() {
+    hello('facebook').logout().then(() => {
   	   console.log('signed out');
+       this.user = null;
     }, function(e) {
   	   alert('Signed out error: ' + e.error.message);
     });
   }
 }
-AuthService.$inject = ['$q'];

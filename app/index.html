@@ -22,8 +22,7 @@
       <md-icon>menu</md-icon>
     </md-button>
     <h2 flex md-truncate>Advokat Vote</h2>
-    <!-- <img ng-src="{{ctrl.face}}" alt="Account Avatar" class="md-avatar"> -->
-    <md-icon>account_box</md-icon>
+    <img ng-show="app.AuthService.user && app.AuthService.user.thumbnail" ng-src="{{app.AuthService.user.thumbnail}}" alt="Account Avatar" class="md-avatar">
 
     <md-menu md-position-mode="target-right target">
       <md-button aria-label="Account Aptions" class="md-icon-button" ng-click="app.openAccountMenu($mdMenu, $event)">
@@ -32,7 +31,7 @@
       <md-menu-content width="4">
         <!-- icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"" -->
         <md-menu-item>
-          <md-button disabled="disabled" ng-click="ctrl.login($event)">
+          <md-button ng-click="app.AuthService.login($event)">
             <md-icon md-menu-align-target>account_circle</md-icon>
             Login
           </md-button>
