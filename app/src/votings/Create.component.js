@@ -3,11 +3,12 @@ import angular from 'angular';
 import * as utils from 'src/lib/utils';
 
 class CreateController {
-  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q, $mdpTimePicker) {
-    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q', '$mdpTimePicker'];
+  constructor($rootScope, AuthService, $mdConstant, $state, $mdDialog, $q, $mdpTimePicker, VotingsDataService) {
+    this.$inject = ['$rootScope', 'AuthService', '$mdConstant', '$state', '$mdDialog', '$q', '$mdpTimePicker', 'VotingsDataService'];
     this.$q = $q;
     this.$state = $state;
     this.$mdDialog = $mdDialog;
+    this.VotingsDataService = VotingsDataService;
 
     this.customSeparatorKeys = [
       $mdConstant.KEY_CODE.ENTER,
@@ -84,6 +85,7 @@ class CreateController {
     this.newModel = this.hash(this.newModel);
     var newModel = angular.copy(this.newModel);
     console.log("newModel", newModel);
+    this.VotingsDataService.addVoting(newModel);
     this.$state.go('welcome');
     // submit (with promise?)
     /* nope

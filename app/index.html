@@ -73,11 +73,14 @@
       <section>
         <md-subheader class="md-primary">Participating</md-subheader>
         <!-- Custom VotingsList component -->
-        <votings-list
-            votings="app.votings"
-            selected="app.voting"
-            on-selected="app.selectVoting(voting)">
-        </votings-list>
+        <md-list>
+          <md-list-item ng-repeat="voting in app.votings">
+            <md-button ng-click="app.showDetails({voting:voting})">
+              <md-icon>description</md-icon>
+              {{voting.title}}
+            </md-button>
+          </md-list-item>
+        </md-list>
       </section>
     </md-sidenav>
     <!-- Container #4 -->

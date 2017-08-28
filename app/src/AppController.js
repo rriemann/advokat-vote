@@ -4,7 +4,7 @@
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, AuthService, $mdSidenav) {
+function AppController(AuthService, $mdSidenav, VotingsDataService) {
   var self = this;
 
   self.selectedVoting     = null;
@@ -13,15 +13,9 @@ function AppController(UsersDataService, AuthService, $mdSidenav) {
   self.toggleList   = toggleVotingsList;
   self.openAccountMenu = openAccountMenu;
   self.AuthService = AuthService;
+  self.VotingsDataService = VotingsDataService;
 
-  // Load all registered users
-
-  UsersDataService
-        .loadAllUsers()
-        .then( function( users ) {
-          self.users    = [].concat(users);
-          self.selected = users[0];
-        });
+  self.votings = VotingsDataService.votings;
 
   // *********************************
   // Internal methods
@@ -43,8 +37,9 @@ function AppController(UsersDataService, AuthService, $mdSidenav) {
    * @param menuId
    */
   function selectVoting( voting ) {
-    self.selected = angular.isNumber(voting) ? $scope.users[voting] : voting;
+    // var selected = angular.isNumber(voting) ? self.votings[voting] : voting;
+    console.log("clicked", voting);
   }
 }
 
-export default [ 'UsersDataService', 'AuthService', '$mdSidenav', AppController ];
+export default [ 'AuthService', '$mdSidenav', 'VotingsDataService', AppController ];

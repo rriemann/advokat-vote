@@ -2,13 +2,25 @@
 
 import WelcomeComponent from './Welcome.component';
 import CreateComponent from './Create.component';
+import VotingsDataService from './VotingsData.service';
 
 import ngTimePicker from 'angular-material-time-picker';
+
+import LocalStorageModule from 'angular-local-storage';
 // import ngMessages from 'angular-messages';
 import 'angular-messages';
 
-export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessages'])
+export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessages', LocalStorageModule])
 .component(WelcomeComponent.name, WelcomeComponent.config)
+.service("VotingsDataService", VotingsDataService)
+.config((localStorageServiceProvider) => {
+  // https://github.com/grevory/angular-local-storage#angular-local-storage
+  localStorageServiceProvider
+  .setPrefix('avokat-vote')
+  // .setStorageType('sessionStorage')
+  .setStorageType('localStorage');
+  // .setNotify(true, true)
+})
 .config(($stateProvider) => {
   $stateProvider.state('welcome', {
     url: "/",
