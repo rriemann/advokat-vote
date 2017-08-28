@@ -1,3 +1,6 @@
+import angular from 'angular';
+import {hash} from 'src/lib/utils';
+
 export default class Aggregate {
   static initClass() {
 
@@ -132,7 +135,7 @@ export default class Aggregate {
 
   static copy(anAggregate) {
     const newAggregate = new Aggregate();
-    newAggregate.questions = _.cloneDeep(anAggregate.questions);
+    newAggregate.questions = angular.copy(anAggregate.questions);
 
     return newAggregate;
   }
@@ -195,7 +198,7 @@ export default class Aggregate {
   //
   // @return {String} hash
   hash() {
-    return Crypto.hash(this.toObject());
+    return hash(this.toObject());
   }
 
   // export the entire Aggregate state to a json string

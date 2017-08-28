@@ -3,8 +3,18 @@ import angular from 'angular';
 import {API_ENDPOINT} from 'src/app.config';
 
 import SignalClient from 'src/lib/signal-client';
-import {Node, storage} from 'kad';
+import {Node, storage, constants} from 'kad';
 import WebRTC from 'src/lib/transport/index';
+import Aggregate from 'src/lib/advokat/aggregate';
+
+
+// advokat
+import Aggregator from 'src/lib/advokat/aggregator';
+import akConstants from 'src/lib/advokat/constants';
+constants.T_RESPONSETIMEOUT = 5*1000; // in ms
+constants.MESSAGE_TYPES.push(...akConstants.MESSAGE_TYPES);
+
+
 
 class ShowController {
   constructor(VotingsDataService, $http, $timeout, $q, AuthService) {
@@ -112,7 +122,14 @@ class ShowController {
   }
 
   startAggregation() {
-    return 4;
+    var initialAggregate = new Aggregate(aggregate);
+
+    console.info("startAggregation");
+    aggregator = new Aggregator(node, node._self, initialAggregate);
+    aggregator.processAggregation(function () {
+      result = aggregator.resultContainer;
+      participantCount = aggregator.resultContainer.counter;
+    });
   }
 
   startVote() {

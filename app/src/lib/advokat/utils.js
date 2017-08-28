@@ -5,10 +5,11 @@
 'use strict';
 
 var assert = require('assert');
-var crypto = require('crypto');
 var constants = require('kad').constants;
 var utils = require('kad').utils
 var _ = require('lodash');
+
+import {hash} from 'src/lib/utils';
 
 /**
  * Validate a key
@@ -25,8 +26,7 @@ exports.testFunction = function(key) {
  * @returns {String}
  */
 exports.getHash = function(data) {
-  var json = JSON.stringify(data);
-  return crypto.createHash('sha1').update(json).digest('hex');
+  return hash(data);
 };
 
 /**
