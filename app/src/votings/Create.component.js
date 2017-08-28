@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 import * as utils from 'src/lib/utils';
 
 class CreateController {
@@ -55,13 +57,13 @@ class CreateController {
     model.questions.forEach((question) => {
       question.answers.forEach((answer) => {
         delete answer._id;
-        answer._id = utils.hash(answer);
+        answer._id = utils.hash(angular.copy(answer));
       });
       delete question._id;
-      question._id = utils.hash(question);
+      question._id = utils.hash(angular.copy(question));
     });
     delete model._id;
-    model._id = utils.hash(model);
+    model._id = utils.hash(angular.copy(model));
     return model;
   }
 
