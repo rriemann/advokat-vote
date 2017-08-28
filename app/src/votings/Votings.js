@@ -2,6 +2,7 @@
 
 import WelcomeComponent from './Welcome.component';
 import CreateComponent from './Create.component';
+import ShowComponent from './Show.component';
 import VotingsDataService from './VotingsData.service';
 
 import ngTimePicker from 'angular-material-time-picker';
@@ -36,5 +37,19 @@ export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessage
     url: '/create',
     component: CreateComponent.name,
     data: { requiresAuth: true },
+  });
+})
+.component(ShowComponent.name, ShowComponent.config)
+.config(($stateProvider) => {
+  $stateProvider.state('show', {
+    url: '/show/:votingId',
+    component: ShowComponent.name,
+    // data: { requiresAuth: true },
+    resolve: {
+      voting: function($transition$, VotingsDataService) {
+        debugger;
+        return VotingsDataService.votings[$transition$.params().votingId];
+      }
+    }
   });
 });

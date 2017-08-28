@@ -74,11 +74,9 @@
         <md-subheader class="md-primary">Participating</md-subheader>
         <!-- Custom VotingsList component -->
         <md-list>
-          <md-list-item ng-repeat="voting in app.votings">
-            <md-button ng-click="app.showDetails({voting:voting})">
-              <md-icon>description</md-icon>
-              {{voting.title}}
-            </md-button>
+          <md-list-item ng-repeat="voting in app.votings" ui-sref="show({votingId:voting._id})">
+            <md-icon>description</md-icon>
+            <p>{{voting.title}}</p>
           </md-list-item>
         </md-list>
       </section>
