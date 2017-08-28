@@ -1,13 +1,21 @@
 import angular from 'angular';
 
 class ShowController {
-  constructor(VotingsDataService, $http) {
-    this.$inject = ['VotingsDataService', '$http'];
+  constructor(VotingsDataService, $http, $timeout, $q) {
+    this.$inject = ['VotingsDataService', '$http', '$timeout', '$q'];
     this.input = {};
     this.save = VotingsDataService.save;
     this.$http = $http;
+    this.$timeout = $timeout;
+    this.$q = $q;
 
     this.logs = [];
+  }
+
+  $onInit() {
+    if(this.voting.input) {
+      $timeout(() => this.startVote());
+    }
   }
 
   isChecked(question, answer) {
@@ -39,20 +47,29 @@ class ShowController {
     // console.log("valid?", this.form.$valid);
     this.voting.input = this.input;
     console.log(this.input);
-    this.register();
+    this.save();
+    $timeout(() => this.startVote());
   }
 
-  register() {
+  reset() {
+    this.input = {};
+  }
+
+  startVote() {
     var registerLog = []
     this.logs.push({
         title: "Registration",
         entries: registerLog
     });
     registerLog.push("Ballot prepared. Require now authorisation.");
-  }
 
-  reset() {
-    this.input = {};
+    // this.$http
+    /*
+    $q((resolve,reject) => {
+
+    })
+    */
+
   }
 }
 
