@@ -49,11 +49,11 @@
         </div>
       </ng-form>
     </div>
-    <div layout="layout" layout-align="space-between start">
-      <p flex="flex">Enter at least two answers. Confirm every answer with [enter].<br/>Define votes per question per voter.</p>
+    <div layout="column" layout-gt-sm="row" layout-align="space-between start">
       <md-button ng-click="$ctrl.addQuestion()" class="md-raised">
         <md-icon md-font-set="material-icons">add</md-icon>Add Question
       </md-button>
+      <p flex="flex">Enter at least two answers. Confirm every answer with [enter].<br/>Define votes per question per voter.</p>
     </div>
     <div layout="layout" layout-align="start">
       <md-button type="submit" class="md-primary md-raised">

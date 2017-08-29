@@ -37,6 +37,13 @@ export default angular.module("votings", ['ngMaterial', ngTimePicker, 'ngMessage
     url: '/create',
     component: CreateComponent.name,
     data: { requiresAuth: true },
+    /*
+    resolve: {
+      user: function(AuthService) {
+        AuthService.ensureLogin();
+      }
+    },
+    */
   });
 })
 .component(ShowComponent.name, ShowComponent.config)

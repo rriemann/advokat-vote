@@ -9,6 +9,7 @@ class CreateController {
     this.$state = $state;
     this.$mdDialog = $mdDialog;
     this.VotingsDataService = VotingsDataService;
+    this.AuthService = AuthService;
 
     this.customSeparatorKeys = [
       $mdConstant.KEY_CODE.ENTER,
@@ -18,6 +19,9 @@ class CreateController {
     this.today = new Date();
     this.today.setHours(0,0,0,0); // otherwise datepicker doesn't accept today
 
+  }
+
+  $onInit() {
     this.reset();
   }
 
@@ -25,7 +29,7 @@ class CreateController {
     // model for election form
     this.newModel = {
       start: new Date(),
-      sponsor: AuthService.user.email,
+      sponsor: this.AuthService.user.email,
       electorate: [],
       questions: [],
     };

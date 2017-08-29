@@ -7,7 +7,10 @@ export default class AuthService {
   constructor($rootScope) {
     this.$inject = ['$rootScope'];
     this.$rootScope = $rootScope;
-    this.user = null;
+    this.user = {
+      email: '',
+      thumbnail: '',
+    };
 
     hello.init({
       // facebook: FACEBOOK_CLIENT_ID,
@@ -44,8 +47,15 @@ export default class AuthService {
     var currentTime = (new Date()).getTime() / 1000;
     var session = hello('google').getAuthResponse();
     console.log('session:', session);
-    console.log('isLoggedIn', session && session.access_token && session.expires > currentTime);
-    return !!(session && session.access_toke && session.expires > currentTime);
+    var loggedIn = !!(session && session.access_token && session.expires > currentTime);
+    console.log('isLoggedIn', loggedIn);
+    return !!(loggedIn);
+  }
+
+  ensureLogin() {
+    if(!this.isAuthenticated()) {
+      this.login();
+    }
   }
 
   /**
@@ -66,7 +76,10 @@ export default class AuthService {
   logout() {
     hello('google').logout().then(() => {
   	   console.log('signed out');
-       this.user = null;
+       this.user = {
+         email: '',
+         thumbnail: '',
+       };
     }, function(e) {
   	   alert('Signed out error: ' + e.error.message);
     });
