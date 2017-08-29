@@ -14,9 +14,46 @@ import AuthHook from 'src/Auth.hook';
 
 export default angular.module( 'advokat', [ 'ui.router', 'ngMaterial', Users.name, Votings.name ] )
 .config(($mdIconProvider, $mdThemingProvider) => {
+  // http://mcg.mbitson.com/#!?mcgpalette0=%233f51b5
+  $mdThemingProvider.definePalette('advokat', {
+    '50': 'f3e0e0',
+    '100': 'e0b3b3',
+    '200': 'cc8080',
+    '300': 'b84d4d',
+    '400': 'a82626',
+    '500': '990000',
+    '600': '910000',
+    '700': '860000',
+    '800': '7c0000',
+    '900': '6b0000',
+    'A100': 'ff9a9a',
+    'A200': 'ff6767',
+    'A400': 'ff3434',
+    'A700': 'ff1a1a',
+    'contrastDefaultColor': 'light',
+    'contrastDarkColors': [
+      '50',
+      '100',
+      '200',
+      'A100',
+      'A200'
+    ],
+    'contrastLightColors': [
+      '300',
+      '400',
+      '500',
+      '600',
+      '700',
+      '800',
+      '900',
+      'A400',
+      'A700'
+    ]
+  });
+
   $mdThemingProvider.theme('default')
-    .primaryPalette('blue')
-    .accentPalette('red');
+    .primaryPalette('advokat');
+    // .accentPalette('red')
 })
 .service('AuthService', AuthService)
 //.run(AuthHook)
