@@ -53,6 +53,7 @@
   },
   "scripts": {
     "postinstall": "jspm install",
+    "bundle": "jspm bundle src/app  app/src/bundle.js --inject",
     "serve": "live-server --entry-file=index.html --no-browser ./app"
   }
 }
