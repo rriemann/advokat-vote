@@ -28,7 +28,7 @@
       "hat": "npm:hat@^0.0.3",
       "hellojs": "npm:hellojs@^1.15.1",
       "json": "github:systemjs/plugin-json@^0.1.0",
-      "kad": "npm:kad@1.6.4",
+      "kad": "github:rriemann/kad@engine_fix",
       "lodash": "npm:lodash@^4.17.4",
       "plugin-traceur": "npm:systemjs-plugin-traceur@^0.0.3",
       "rriemann/kad": "github:rriemann/kad@engine_fix",
@@ -40,6 +40,11 @@
       "plugin-traceur-runtime": "npm:babel-runtime@^5.8.24",
       "traceur": "github:jmcriffey/bower-traceur@0.0.93",
       "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93"
+    },
+    "overrides": {
+      "github:rriemann/kad@engine_fix": {
+        "registry": "npm"
+      }
     }
   },
   "devDependencies": {

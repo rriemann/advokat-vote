@@ -28,8 +28,10 @@ System.config({
     "hat": "npm:hat@0.0.3",
     "hellojs": "npm:hellojs@1.15.1",
     "json": "github:systemjs/plugin-json@0.1.2",
-    "kad": "npm:kad@1.6.4",
+    "kad": "github:rriemann/kad@engine_fix",
     "lodash": "npm:lodash@4.17.4",
+    "plugin-traceur": "npm:systemjs-plugin-traceur@0.0.3",
+    "plugin-traceur-runtime": "npm:babel-runtime@5.8.38",
     "rriemann/kad": "github:rriemann/kad@engine_fix",
     "simple-peer": "npm:simple-peer@8.1.1",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -109,6 +111,28 @@ System.config({
     "github:jspm/nodelibs-vm@0.1.0": {
       "vm-browserify": "npm:vm-browserify@0.0.4"
     },
+    "github:rriemann/kad@engine_fix": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "async": "npm:async@0.9.2",
+      "buffer": "github:jspm/nodelibs-buffer@0.1.1",
+      "clarinet": "npm:clarinet@0.11.0",
+      "colors": "npm:colors@1.1.2",
+      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
+      "dgram": "github:jspm/nodelibs-dgram@0.1.0",
+      "events": "github:jspm/nodelibs-events@0.1.1",
+      "hat": "npm:hat@0.0.3",
+      "http": "github:jspm/nodelibs-http@1.7.1",
+      "https": "github:jspm/nodelibs-https@0.1.0",
+      "kad-fs": "npm:kad-fs@0.0.4",
+      "kad-localstorage": "npm:kad-localstorage@0.0.7",
+      "kad-memstore": "npm:kad-memstore@0.0.1",
+      "lodash": "npm:lodash@3.10.1",
+      "merge": "npm:merge@1.2.0",
+      "ms": "npm:ms@0.7.3",
+      "net": "github:jspm/nodelibs-net@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
     "npm:@uirouter/angularjs@1.0.6": {
       "@uirouter/core": "npm:@uirouter/core@5.0.6",
       "angular": "github:angular/bower-angular@1.6.6",
@@ -153,6 +177,9 @@ System.config({
     "npm:async@2.5.0": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",
       "lodash": "npm:lodash@4.17.4",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:browserify-aes@1.0.6": {
@@ -353,28 +380,6 @@ System.config({
     "npm:kad-memstore@0.0.1": {
       "readable-stream": "npm:readable-stream@2.3.3"
     },
-    "npm:kad@1.6.4": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0",
-      "async": "npm:async@0.9.2",
-      "buffer": "github:jspm/nodelibs-buffer@0.1.1",
-      "clarinet": "npm:clarinet@0.11.0",
-      "colors": "npm:colors@1.1.2",
-      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
-      "dgram": "github:jspm/nodelibs-dgram@0.1.0",
-      "events": "github:jspm/nodelibs-events@0.1.1",
-      "hat": "npm:hat@0.0.3",
-      "http": "github:jspm/nodelibs-http@1.7.1",
-      "https": "github:jspm/nodelibs-https@0.1.0",
-      "kad-fs": "npm:kad-fs@0.0.4",
-      "kad-localstorage": "npm:kad-localstorage@0.0.7",
-      "kad-memstore": "npm:kad-memstore@0.0.1",
-      "lodash": "npm:lodash@3.10.1",
-      "merge": "npm:merge@1.2.0",
-      "ms": "npm:ms@0.7.3",
-      "net": "github:jspm/nodelibs-net@0.1.2",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "util": "github:jspm/nodelibs-util@0.1.0"
-    },
     "npm:lodash@3.10.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -489,6 +494,10 @@ System.config({
     "npm:string_decoder@1.0.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",
       "safe-buffer": "npm:safe-buffer@5.1.1"
+    },
+    "npm:systemjs-plugin-traceur@0.0.3": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.111",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.111"
     },
     "npm:timers-browserify@1.4.2": {
       "process": "npm:process@0.11.10"
