@@ -21,6 +21,7 @@ System.config({
     "angular-mocks": "github:angular/bower-angular-mocks@1.5.8",
     "angular-moment": "npm:angular-moment@1.0.1",
     "assert": "npm:assert@1.4.1",
+    "async": "npm:async@2.5.0",
     "crypto-js": "npm:crypto-js@3.1.9-1",
     "css": "github:systemjs/plugin-css@0.1.35",
     "events": "npm:events@1.1.1",
@@ -28,6 +29,7 @@ System.config({
     "hellojs": "npm:hellojs@1.15.1",
     "json": "github:systemjs/plugin-json@0.1.2",
     "kad": "npm:kad@1.6.4",
+    "lodash": "npm:lodash@4.17.4",
     "rriemann/kad": "github:rriemann/kad@engine_fix",
     "simple-peer": "npm:simple-peer@8.1.1",
     "text": "github:systemjs/plugin-text@0.0.4",
@@ -147,6 +149,11 @@ System.config({
     "npm:async@0.9.2": {
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:async@2.5.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.1",
+      "lodash": "npm:lodash@4.17.4",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:browserify-aes@1.0.6": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.1",

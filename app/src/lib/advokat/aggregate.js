@@ -2,10 +2,6 @@ import angular from 'angular';
 import {hash} from 'src/lib/utils';
 
 export default class Aggregate {
-  static initClass() {
-
-    this.fromObject = this.prototype.copy;
-  }
 
   // create a new aggregate from a ballot object
   //
@@ -133,7 +129,7 @@ export default class Aggregate {
     return newAggregate;
   }
 
-  static copy(anAggregate) {
+  static fromObject(anAggregate) {
     const newAggregate = new Aggregate();
     newAggregate.questions = angular.copy(anAggregate.questions);
 
@@ -146,6 +142,7 @@ export default class Aggregate {
     return _.isEqual(a, b);
   }
 
+  /*
   isSubsetFrom(otherAggregate) {
     // We iterate over this object and check that every value is represented
     // in the otherAggregate.
@@ -172,6 +169,7 @@ export default class Aggregate {
     }
     return true;
   }
+  */
 
   // gives number of votes in the aggregate
   //
@@ -208,4 +206,3 @@ export default class Aggregate {
     return JSON.stringify(this.toObject());
   }
 }
-Aggregate.initClass();

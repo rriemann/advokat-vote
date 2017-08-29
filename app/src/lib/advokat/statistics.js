@@ -4,7 +4,6 @@
 
 'use strict';
 
-var crypto = require('crypto');
 var akConstants = require('./constants');
 var kademlia = require('kad')
 var constants = kademlia.constants;

@@ -4,10 +4,9 @@
 
 'use strict';
 
-var assert = require('assert');
-var constants = require('kad').constants;
-var utils = require('kad').utils
-var _ = require('lodash');
+import assert from 'assert';
+import {constants, utils} from 'kad';
+import _ from 'lodash';
 
 import {hash} from 'src/lib/utils';
 
@@ -16,7 +15,7 @@ import {hash} from 'src/lib/utils';
  * @param {String} key - Key to test
  * @returns {Boolean}
  */
-exports.testFunction = function(key) {
+export function testFunction(key) {
   return !!key && key.length === constants.B / 4;
 };
 
@@ -25,7 +24,7 @@ exports.testFunction = function(key) {
  * @param {Object} data - data to hash
  * @returns {String}
  */
-exports.getHash = function(data) {
+export function getHash(data) {
   return hash(data);
 };
 
@@ -37,7 +36,7 @@ exports.getHash = function(data) {
  * @param {Number} depth
  * @return {String}
  */
-exports.getBranchID = function(nodeID, depth) {
+export function getBranchID(nodeID, depth) {
     assert(_.isString(nodeID), 'nodeID must be a String');
     var buffer = utils.hexToBuffer(nodeID);
     var fullBytes = Math.floor((depth+7)/8);

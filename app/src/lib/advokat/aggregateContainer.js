@@ -4,7 +4,6 @@
 
 'use strict';
 
-var crypto = require('crypto');
 var akConstants = require('./constants');
 var akUtils = require('./utils');
 var _ = require('lodash');
